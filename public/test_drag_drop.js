@@ -1,29 +1,25 @@
-let newX=0;let newY=0, startX=0, startY=0;
 const card = document.getElementById('card');
+let offsetX = 0, offsetY = 0, isDragging = false;
 
-card.addEventListener('mousedown', mousedown);
+card.style.top = '100px'; // Set initial position
+card.style.left = '100px';
 
-function mousedown(e) {
-  startX = e.clientX - newX;
-  startY = e.clientY - newY;
+card.addEventListener('mousedown', function(e) {
+  isDragging = true;
+  offsetX = e.clientX - card.offsetLeft;
+  offsetY = e.clientY - card.offsetTop;
   document.addEventListener('mousemove', mousemove);
   document.addEventListener('mouseup', mouseup);
-}
+});
 
 function mousemove(e) {
-  newX = startX - e.clientX ;
-  newY = startY - e.clientY;
-
-  startX = e.clientX;
-  startY = e.clientY;
-
-  card.style.top= (card.offsetTop - newY) +'px';
-  card.style.left = (card.offsetLeft - newX) + 'px';    
-
-  //card.style.transform = `translate(${newX}px, ${newY}px)`;
+  if (!isDragging) return;
+  card.style.left = (e.clientX - offsetX) + 'px';
+  card.style.top = (e.clientY - offsetY) + 'px';
 }
 
 function mouseup() {
-    document.removeEventListener('mousemove', mousemove);
-    document.removeEventListener('mouseup', mouseup);
-    }
+  isDragging = false;
+  document.removeEventListener('mousemove', mousemove);
+  document.removeEventListener('mouseup', mouseup);
+}
