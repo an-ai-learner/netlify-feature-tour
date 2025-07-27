@@ -57,6 +57,8 @@ import Layout from '../components/layout.astro';
   description="This is a small site to show the most powerful features of Netlify quickly!"
   home
 >
+
+
   <main class="steps">
     <section class="step">
       <h2 class="stepHeading">Deploy Previews -- Test making changes</h2>
@@ -111,6 +113,12 @@ import Layout from '../components/layout.astro';
     </section>
 
     <section>
+      <h2 class="stepHeading">Test Drag drop features</h2>
+      <a href="/test.html"> Test drag and drop </a>
+
+    </section>
+    <section>
+       <h2 class="stepHeading">Test Table lineage features</h2>
       <input type="file" id="fileInput" accept=".json">
       <input type="text" id="highlightInput" placeholder="Enter table name to highlight">
       <button onclick="highlightNode()">Highlight</button>
